@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style= "text-align: center;" >Blog Posts</h2>
+    {% for post in posts %}
+        <article>
+            <h3><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3>
+            <p>{{ post.content[:100] }}...</p>
+            <a href="{{ url_for('update', post_id=post.id) }}">Edit</a>
+            <form action="{{ url_for('delete', post_id=post.id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </article>
+    {% endfor %}
+{% endblock %}
